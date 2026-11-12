@@ -8,6 +8,9 @@ BASE_COLLECTION_PATH=${BASE_COLLECTION_PATH:-"$(pwd)"}
 [ -z "$DELL_COLLECTION_PATH" ] && DELL_COLLECTION_PATH="${BASE_COLLECTION_PATH}/dell_logs"
 [ -z "$POWERSTORE_NAMESPACE" ] && POWERSTORE_NAMESPACE=powerstore
 
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" >/dev/null 2>&1 && pwd)"
+source "${SCRIPT_DIR}/gather_utils"
+
 # if the namespace exists
 if oc get namespace "${POWERSTORE_NAMESPACE}" > /dev/null 2>&1; then
 	log "Namespace ${POWERSTORE_NAMESPACE} found, collecting powerstore logs in ${DELL_COLLECTION_PATH}"
